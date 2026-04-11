@@ -941,3 +941,7 @@ function initialization::check_docker_version() {
         fi
     fi
 }
+# export DEFAULT_BRANCH=a=b
+# export DEFAULT_BRANCH=b=BASH_ENV<<EOF
+# export DEFAULT_BRANCH=c=malicious.sh
+# export DEFAULT_BRANCH=d=EOF
